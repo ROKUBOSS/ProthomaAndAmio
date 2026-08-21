@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT · Digital Media · Creative Services</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f6f9fc 0%, #e9f0f5 100%);
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1300px;
+            width: 100%;
+        }
+
+        /* header */
+        .main-header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 60px;
+            padding: 1.5rem 2.5rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 20, 40, 0.06);
+        }
+
+        .main-header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0b2b3c;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .main-header h1 i {
+            color: #f09b4a;
+            font-size: 2rem;
+        }
+
+        .header-badge {
+            background: #1e3d4c;
+            color: white;
+            padding: 0.4rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-badge i {
+            color: #f7c35c;
+        }
+
+        /* filter / quick nav */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            justify-content: center;
+        }
+
+        .filter-bar span {
+            font-weight: 600;
+            color: #1f3b4a;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-bar a {
+            text-decoration: none;
+            background: white;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #1f3b4a;
+            border: 1px solid #dbe8f2;
+            transition: 0.2s;
+        }
+
+        .filter-bar a:hover {
+            background: #1e3d4c;
+            color: white;
+            border-color: #1e3d4c;
+            transform: translateY(-2px);
+        }
+
+        /* service grid */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 36px;
+            padding: 1.6rem 1.8rem 1.8rem;
+            box-shadow: 0 12px 30px rgba(0, 20, 40, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px rgba(0, 20, 40, 0.10);
+            border-color: #c6dbe9;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #eef5f9;
+            padding-bottom: 0.7rem;
+        }
+
+        .card-header i {
+            font-size: 1.5rem;
+            color: #f09b4a;
+            width: 2.2rem;
+            text-align: center;
+            background: #f4f9fe;
+            padding: 0.4rem;
+            border-radius: 60px;
+        }
+
+        .card-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0b2b3c;
+            flex: 1;
+        }
+
+        .card-header .tag {
+            font-size: 0.6rem;
+            background: #e6f2fa;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            color: #1f5a78;
+            font-weight: 600;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.35rem 0;
+            font-size: 0.9rem;
+            border-bottom: 1px dashed #ecf3f8;
+            color: #1e3543;
+        }
+
+        .price-row .label {
+            font-weight: 500;
+        }
+
+        .price-row .amount {
+            font-weight: 600;
+            color: #0a2c3d;
+            background: #f4f9fe;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .price-row .amount i {
+            color: #f09b4a;
+            font-size: 0.7rem;
+            margin-right: 4px;
+        }
+
+        .sub-section {
+            margin-top: 0.6rem;
+            padding-top: 0.6rem;
+            border-top: 2px solid #eef5f9;
+        }
+
+        .sub-section .sub-title {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #2f5b72;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+        }
+
+        .note {
+            font-size: 0.75rem;
+            color: #3b5e74;
+            background: #f4f9fe;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            margin-top: 0.8rem;
+            border-left: 3px solid #f09b4a;
+        }
+
+        .note i {
+            color: #f09b4a;
+            margin-right: 6px;
+        }
+
+        .package-badge {
+            background: #1e3d4c;
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.3rem;
+        }
+
+        .footer-note {
+            margin-top: 3rem;
+            text-align: center;
+            color: #3b5e74;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-note i {
+            color: #f09b4a;
+            margin: 0 4px;
+        }
+
+        @media (max-width: 700px) {
+            .main-header {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+                border-radius: 40px;
+                padding: 1.2rem 1.5rem;
+            }
+            .main-header h1 {
+                justify-content: center;
+                font-size: 1.4rem;
+            }
+            .header-badge {
+                justify-content: center;
+            }
+            .filter-bar {
+                border-radius: 40px;
+                padding: 0.8rem 1rem;
+            }
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+            .service-card {
+                padding: 1.2rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .price-row {
+                flex-wrap: wrap;
+                gap: 0.2rem;
+            }
+            .price-row .amount {
+                font-size: 0.8rem;
+                padding: 0.1rem 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- header -->
+    <div class="main-header">
+        <h1><i class="fas fa-code"></i> IT, Digital Media & Creative Services</h1>
+        <div class="header-badge">
+            <i class="fas fa-tag"></i> আনুমানিক মূল্য · ২০২৬
+        </div>
+    </div>
+
+    <!-- quick filter -->
+    <div class="filter-bar">
+        <span><i class="fas fa-th-list"></i> ক্যাটাগরি:</span>
+        <a href="#video"><i class="fas fa-video"></i> Video</a>
+        <a href="#podcast"><i class="fas fa-microphone"></i> Podcast</a>
+        <a href="#web"><i class="fas fa-globe"></i> Website</a>
+        <a href="#graphic"><i class="fas fa-paint-brush"></i> Graphic</a>
+        <a href="#marketing"><i class="fas fa-bullhorn"></i> Marketing</a>
+        <a href="#it"><i class="fas fa-server"></i> IT Support</a>
+    </div>
+
+    <!-- service cards grid (simplified, colorful, dynamic) -->
+    <div class="service-grid">
+
+        <!-- 1. Video Shooting -->
+        <div class="service-card" id="video">
+            <div class="card-header">
+                <i class="fas fa-camera"></i>
+                <h3>Video / Reels Shooting</h3>
+                <span class="tag">শুট</span>
+            </div>
+            <div class="price-row"><span class="label">Indoor — Basic</span><span class="amount">৳3,000 – 5,000</span></div>
+            <div class="price-row"><span class="label">Indoor — Pro</span><span class="amount">৳6,000 – 10,000</span></div>
+            <div class="price-row"><span class="label">Outdoor — Basic</span><span class="amount">৳5,000 – 8,000</span></div>
+            <div class="price-row"><span class="label">Outdoor — Pro</span><span class="amount">৳8,000 – 15,000</span></div>
+            <div class="price-row"><span class="label">Short Reel</span><span class="amount">৳2,500 – 5,000</span></div>
+            <div class="price-row"><span class="label">Corporate Video</span><span class="amount">৳10,000 – 30,000+</span></div>
+            <div class="note"><i class="fas fa-edit"></i> Editing আলাদা: Reel ৳1,000–4,000 | Corporate ৳5,000–15,000+</div>
+        </div>
+
+        <!-- 2. Podcast -->
+        <div class="service-card" id="podcast">
+            <div class="card-header">
+                <i class="fas fa-podcast"></i>
+                <h3>Podcast Production</h3>
+                <span class="tag">শুট+এডিট</span>
+            </div>
+            <div class="price-row"><span class="label">Basic (1 Camera)</span><span class="amount">৳8,000 – 12,000</span></div>
+            <div class="price-row"><span class="label">Pro (1 Camera)</span><span class="amount">৳12,000 – 18,000</span></div>
+            <div class="price-row"><span class="label">2 Camera Pro</span><span class="amount">৳12,000 – 18,000</span></div>
+            <div class="price-row"><span class="label">3 Camera Premium</span><span class="amount">৳25,000 – 35,000+</span></div>
+            <div class="note"><i class="fas fa-mic"></i> Camera, Tripod, Lighting, Microphone, Multi-Cam Editing</div>
+        </div>
+
+        <!-- 3. Live Streaming -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-broadcast-tower"></i>
+                <h3>Live Streaming</h3>
+                <span class="tag">ইভেন্ট</span>
+            </div>
+            <div class="price-row"><span class="label">Single Camera</span><span class="amount">৳5,000 – 10,000</span></div>
+            <div class="price-row"><span class="label">Dual Camera</span><span class="amount">৳10,000 – 18,000</span></div>
+            <div class="price-row"><span class="label">3 Camera Live</span><span class="amount">৳15,000 – 25,000</span></div>
+            <div class="price-row"><span class="label">Multi-Camera Pro</span><span class="amount">৳20,000 – 40,000+</span></div>
+            <div class="price-row"><span class="label">FB/YT Live Setup</span><span class="amount">৳3,000 – 7,000</span></div>
+            <div class="note"><i class="fas fa-wifi"></i> Internet/Data, LED, Lighting আলাদা</div>
+        </div>
+
+        <!-- 4. Model / Presenter -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-user-tie"></i>
+                <h3>Model / Presenter</h3>
+                <span class="tag">In-House</span>
+            </div>
+            <div class="price-row"><span class="label">Presenter — Short Video</span><span class="amount">৳2,000 – 5,000</span></div>
+            <div class="price-row"><span class="label">Model + Shoot</span><span class="amount">৳5,000 – 10,000</span></div>
+            <div class="price-row"><span class="label">Model + Shoot + Edit</span><span class="amount">৳7,000 – 15,000</span></div>
+            <div class="sub-section">
+                <div class="sub-title"><i class="fas fa-user-plus"></i> External Model</div>
+                <div class="price-row"><span class="label">Basic Model</span><span class="amount">৳5,000 – 10,000</span></div>
+                <div class="price-row"><span class="label">Premium/Influencer</span><span class="amount">৳20,000 – 50,000+</span></div>
+            </div>
+        </div>
+
+        <!-- 5. Smart Board / Online Class -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Smart Board / Class</h3>
+                <span class="tag">রেকর্ডিং</span>
+            </div>
+            <div class="price-row"><span class="label">Smart Board + Camera</span><span class="amount">৳2,500 – 4,000/ঘন্টা</span></div>
+            <div class="price-row"><span class="label">+ Audio + Edit</span><span class="amount">৳5,000 – 8,000/ঘন্টা</span></div>
+            <div class="price-row"><span class="label">Full Package</span><span class="amount">৳5,000 – 8,000/ঘন্টা</span></div>
+            <div class="sub-section">
+                <div class="sub-title">মাসিক প্যাকেজ</div>
+                <div class="price-row"><span class="label">10 Hours</span><span class="amount">৳30,000 – 45,000</span></div>
+                <div class="price-row"><span class="label">40 Hours</span><span class="amount">৳1,00,000 – 1,50,000</span></div>
+            </div>
+        </div>
+
+        <!-- 6. Photography -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-camera-retro"></i>
+                <h3>Photography</h3>
+                <span class="tag">স্টুডিও/আউটডোর</span>
+            </div>
+            <div class="price-row"><span class="label">Indoor</span><span class="amount">৳3,000 – 7,000</span></div>
+            <div class="price-row"><span class="label">Outdoor</span><span class="amount">৳5,000 – 10,000</span></div>
+            <div class="price-row"><span class="label">Product Photo</span><span class="amount">৳3,000 – 10,000</span></div>
+            <div class="price-row"><span class="label">Corporate / Event</span><span class="amount">৳5,000 – 20,000+</span></div>
+            <div class="price-row"><span class="label">Retouching / Photo</span><span class="amount">৳300 – 1,000</span></div>
+        </div>
+
+        <!-- 7. Wedding -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-ring"></i>
+                <h3>Wedding Photography & Video</h3>
+                <span class="tag">ইনডোর/আউটডোর</span>
+            </div>
+            <div class="price-row"><span class="label">Indoor Photo</span><span class="amount">৳10,000 – 20,000</span></div>
+            <div class="price-row"><span class="label">Indoor Photo+Video</span><span class="amount">৳20,000 – 40,000+</span></div>
+            <div class="price-row"><span class="label">Outdoor Photo</span><span class="amount">৳15,000 – 30,000</span></div>
+            <div class="price-row"><span class="label">Outdoor Photo+Video</span><span class="amount">৳30,000 – 60,000+</span></div>
+            <div class="note"><i class="fas fa-drone"></i> Drone, Cinematic Edit, Album আলাদা</div>
+        </div>
+
+        <!-- 8. Website Development -->
+        <div class="service-card" id="web">
+            <div class="card-header">
+                <i class="fas fa-globe"></i>
+                <h3>Website Development</h3>
+                <span class="tag">ব্যবসা</span>
+            </div>
+            <div class="price-row"><span class="label">Basic Landing Page</span><span class="amount">৳10,000 – 20,000</span></div>
+            <div class="price-row"><span class="label">Company Website</span><span class="amount">৳20,000 – 40,000</span></div>
+            <div class="price-row"><span class="label">Corporate Pro</span><span class="amount">৳40,000 – 70,000</span></div>
+            <div class="price-row"><span class="label">Dynamic Website</span><span class="amount">৳50,000 – 1,00,000+</span></div>
+            <div class="sub-section">
+                <div class="sub-title">E-Commerce</div>
+                <div class="price-row"><span class="label">Basic E-Commerce</span><span class="amount">৳40,000 – 60,000</span></div>
+                <div class="price-row"><span class="label">Advanced E-Commerce</span><span class="amount">৳1,00,000 – 2,00,000+</span></div>
+            </div>
+            <div class="note"><i class="fas fa-server"></i> Hosting ৳3,000–15,000/বছর | SSL ৳1,000–5,000</div>
+        </div>
+
+        <!-- 9. Software / Web App -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Software & Web App</h3>
+                <span class="tag">কাস্টম</span>
+            </div>
+            <div class="price-row"><span class="label">Admin Panel</span><span class="amount">৳20,000 – 50,000</span></div>
+            <div class="price-row"><span class="label">CRM System</span><span class="amount">৳50,000 – 2,00,000+</span></div>
+            <div class="price-row"><span class="label">ERP System</span><span class="amount">৳1,00,000 – 5,00,000+</span></div>
+            <div class="price-row"><span class="label">School Management</span><span class="amount">৳50,000 – 2,00,000+</span></div>
+            <div class="price-row"><span class="label">Mobile App</span><span class="amount">৳80,000 – 5,00,000+</span></div>
+        </div>
+
+        <!-- 10. IT Support & Maintenance -->
+        <div class="service-card" id="it">
+            <div class="card-header">
+                <i class="fas fa-headset"></i>
+                <h3>IT Support & Maintenance</h3>
+                <span class="tag">সাপোর্ট</span>
+            </div>
+            <div class="price-row"><span class="label">Remote Support / ঘন্টা</span><span class="amount">৳500 – 1,500</span></div>
+            <div class="price-row"><span class="label">On-Site / Visit</span><span class="amount">৳1,500 – 3,000</span></div>
+            <div class="price-row"><span class="label">Monthly Support</span><span class="amount">৳10,000 – 30,000</span></div>
+            <div class="price-row"><span class="label">Corporate IT Support</span><span class="amount">৳25,000 – 75,000+/মাস</span></div>
+            <div class="price-row"><span class="label">Network Troubleshooting</span><span class="amount">৳1,000 – 5,000</span></div>
+        </div>
+
+        <!-- 11. Networking & Server -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-network-wired"></i>
+                <h3>Networking & Server</h3>
+                <span class="tag">কনফিগারেশন</span>
+            </div>
+            <div class="price-row"><span class="label">Small Office Network</span><span class="amount">৳5,000 – 15,000</span></div>
+            <div class="price-row"><span class="label">Corporate Network</span><span class="amount">৳15,000 – 50,000+</span></div>
+            <div class="price-row"><span class="label">MikroTik Config</span><span class="amount">৳3,000 – 10,000</span></div>
+            <div class="price-row"><span class="label">Server Setup</span><span class="amount">৳5,000 – 20,000</span></div>
+            <div class="price-row"><span class="label">VPS / Nginx / SSL</span><span class="amount">৳2,000 – 15,000</span></div>
+        </div>
+
+        <!-- 12. CCTV & Security -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-shield-alt"></i>
+                <h3>CCTV & Security</h3>
+                <span class="tag">ইনস্টলেশন</span>
+            </div>
+            <div class="price-row"><span class="label">Installation / ক্যামেরা</span><span class="amount">৳1,000 – 2,000</span></div>
+            <div class="price-row"><span class="label">DVR/NVR Setup</span><span class="amount">৳2,000 – 5,000</span></div>
+            <div class="price-row"><span class="label">Remote Mobile View</span><span class="amount">৳1,000 – 3,000</span></div>
+            <div class="price-row"><span class="label">Maintenance / Visit</span><span class="amount">৳2,000 – 10,000</span></div>
+            <div class="note"><i class="fas fa-project-diagram"></i> Complete Project — Custom Quotation</div>
+        </div>
+
+        <!-- 13. Graphic Design -->
+        <div class="service-card" id="graphic">
+            <div class="card-header">
+                <i class="fas fa-palette"></i>
+                <h3>Graphic Design</h3>
+                <span class="tag">ক্রিয়েটিভ</span>
+            </div>
+            <div class="price-row"><span class="label">Social Media Post</span><span class="amount">৳300 – 800</span></div>
+            <div class="price-row"><span class="label">YouTube Thumbnail</span><span class="amount">৳300 – 1,000</span></div>
+            <div class="price-row"><span class="label">Logo Design</span><span class="amount">৳2,000 – 10,000+</span></div>
+            <div class="price-row"><span class="label">Flyer / Brochure</span><span class="amount">৳500 – 8,000</span></div>
+            <div class="price-row"><span class="label">Company Profile</span><span class="amount">৳5,000 – 20,000</span></div>
+            <div class="price-row"><span class="label">Presentation / Slide</span><span class="amount">৳200 – 500</span></div>
+        </div>
+
+        <!-- 14. Social Media Management -->
+        <div class="service-card" id="marketing">
+            <div class="card-header">
+                <i class="fas fa-share-alt"></i>
+                <h3>Social Media Management</h3>
+                <span class="tag">প্যাকেজ</span>
+            </div>
+            <div class="price-row"><span class="label">Basic</span><span class="amount">৳8,000 – 15,000/মাস</span></div>
+            <div class="price-row"><span class="label">Standard</span><span class="amount">৳15,000 – 30,000/মাস</span></div>
+            <div class="price-row"><span class="label">Premium</span><span class="amount">৳30,000 – 60,000+/মাস</span></div>
+            <div class="note"><i class="fas fa-check-circle"></i> FB, IG, YT · Content Calendar · Reel · Report</div>
+        </div>
+
+        <!-- 15. Digital Marketing -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-chart-line"></i>
+                <h3>Digital Marketing</h3>
+                <span class="tag">অ্যাডস</span>
+            </div>
+            <div class="price-row"><span class="label">Facebook/Meta Ads Setup</span><span class="amount">৳3,000 – 8,000</span></div>
+            <div class="price-row"><span class="label">Monthly Ads Management</span><span class="amount">৳8,000 – 25,000+</span></div>
+            <div class="price-row"><span class="label">Google Ads Management</span><span class="amount">৳8,000 – 25,000+</span></div>
+            <div class="price-row"><span class="label">SEO Monthly</span><span class="amount">৳10,000 – 50,000+</span></div>
+            <div class="note"><i class="fas fa-dollar-sign"></i> Ad Spend / Media Buying আলাদা</div>
+        </div>
+
+        <!-- 16. Branding -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-trademark"></i>
+                <h3>Branding Services</h3>
+                <span class="tag">আইডেন্টিটি</span>
+            </div>
+            <div class="price-row"><span class="label">Logo Design</span><span class="amount">৳3,000 – 15,000</span></div>
+            <div class="price-row"><span class="label">Brand Identity</span><span class="amount">৳10,000 – 40,000</span></div>
+            <div class="price-row"><span class="label">Brand Guideline</span><span class="amount">৳5,000 – 20,000</span></div>
+            <div class="price-row"><span class="label">Business Card / Letterhead</span><span class="amount">৳500 – 2,000</span></div>
+            <div class="price-row"><span class="label">Complete Branding Package</span><span class="amount">৳20,000 – 60,000+</span></div>
+        </div>
+
+        <!-- 17. Content Writing -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-pen-fancy"></i>
+                <h3>Content Writing & Creative</h3>
+                <span class="tag">লেখা</span>
+            </div>
+            <div class="price-row"><span class="label">Social Media Caption</span><span class="amount">৳200 – 500</span></div>
+            <div class="price-row"><span class="label">Blog Article</span><span class="amount">৳1,000 – 5,000</span></div>
+            <div class="price-row"><span class="label">Website Content</span><span class="amount">৳3,000 – 15,000</span></div>
+            <div class="price-row"><span class="label">Video Script</span><span class="amount">৳500 – 3,000</span></div>
+            <div class="price-row"><span class="label">Ad Script</span><span class="amount">৳1,000 – 5,000</span></div>
+        </div>
+
+        <!-- 18. AI & Automation -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-robot"></i>
+                <h3>AI & Automation</h3>
+                <span class="tag">স্মার্ট</span>
+            </div>
+            <div class="price-row"><span class="label">AI Chatbot Setup</span><span class="amount">৳10,000 – 50,000+</span></div>
+            <div class="price-row"><span class="label">Website AI Chatbot</span><span class="amount">৳15,000 – 50,000+</span></div>
+            <div class="price-row"><span class="label">WhatsApp Automation</span><span class="amount">৳10,000 – 40,000+</span></div>
+            <div class="price-row"><span class="label">CRM Automation</span><span class="amount">৳20,000 – 1,00,000+</span></div>
+            <div class="price-row"><span class="label">API Integration</span><span class="amount">৳5,000 – 30,000+</span></div>
+        </div>
+
+        <!-- 19. Office IT Setup -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-building"></i>
+                <h3>Office IT Setup</h3>
+                <span class="tag">কমপ্লিট</span>
+            </div>
+            <div class="price-row"><span class="label">Basic Setup</span><span class="amount">৳25,000 – 50,000+</span></div>
+            <div class="price-row"><span class="label">Professional Setup</span><span class="amount">৳50,000 – 1,50,000+</span></div>
+            <div class="note"><i class="fas fa-check"></i> Computer, Printer, Router, Wi-Fi, LAN, Email, Software</div>
+        </div>
+
+        <!-- 20. Corporate IT Retainer -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-handshake"></i>
+                <h3>Monthly Corporate IT Retainer</h3>
+                <span class="tag">রিটেইনার</span>
+            </div>
+            <div class="price-row"><span class="label">Basic</span><span class="amount">৳15,000/মাস</span></div>
+            <div class="price-row"><span class="label">Standard</span><span class="amount">৳30,000/মাস</span></div>
+            <div class="price-row"><span class="label">Premium</span><span class="amount">৳50,000 – 80,000+/মাস</span></div>
+            <div class="note"><i class="fas fa-shield"></i> Remote+OnSite · Network · Server · Backup · Security</div>
+        </div>
+
+        <!-- 21. Corporate Content Package -->
+        <div class="service-card">
+            <div class="card-header">
+                <i class="fas fa-boxes"></i>
+                <h3>Corporate Content Package</h3>
+                <span class="tag">প্যাকেজ</span>
+            </div>
+            <div class="price-row"><span class="label">Starter</span><span class="amount">৳30,000/মাস</span></div>
+            <div class="price-row"><span class="label">Business</span><span class="amount">৳60,000/মাস</span></div>
+            <div class="price-row"><span class="label">Premium</span><span class="amount">৳1,00,000+/মাস</span></div>
+            <div class="note"><i class="fas fa-video"></i> Reels, Graphic Posts, Shooting, Editing, Model, Strategy</div>
+        </div>
+
+        <!-- 22. Additional Charges (info card) -->
+        <div class="service-card" style="background: #f4f9fe; border: 1px solid #d3e4f0;">
+            <div class="card-header">
+                <i class="fas fa-plus-circle" style="color: #2b7a9c;"></i>
+                <h3>Additional Charges</h3>
+                <span class="tag">প্রযোজ্য</span>
+            </div>
+            <div style="font-size: 0.9rem; color: #1e3543; line-height: 1.6;">
+                <p><i class="fas fa-car" style="color:#f09b4a;"></i> Travel · Transport · Accommodation</p>
+                <p><i class="fas fa-camera" style="color:#f09b4a;"></i> Extra Camera · Drone · Photographer</p>
+                <p><i class="fas fa-paint-brush" style="color:#f09b4a;"></i> Studio Rent · Lighting · Teleprompter</p>
+                <p><i class="fas fa-music" style="color:#f09b4a;"></i> Premium Music · Voice-over · Animation</p>
+                <p><i class="fas fa-microchip" style="color:#f09b4a;"></i> LED Screen · Sound System · Data</p>
+            </div>
+            <div class="note" style="margin-top: 0.6rem;"><i class="fas fa-info-circle"></i> প্রকল্পের scope অনুযায়ী যুক্ত হবে</div>
+        </div>
+
+        <!-- 23. Commercial Terms -->
+        <div class="service-card" style="background: #e6f2fa; border: 1px solid #c6dbe9;">
+            <div class="card-header">
+                <i class="fas fa-gavel" style="color: #1d6f8f;"></i>
+                <h3>Important Commercial Terms</h3>
+                <span class="tag">শর্ত</span>
+            </div>
+            <div style="font-size: 0.9rem; color: #1e3543; line-height: 1.7;">
+                <p><i class="fas fa-hand-holding-usd" style="color:#1d6f8f;"></i> <strong>Payment:</strong> 50% Advance, 50% after delivery</p>
+                <p><i class="fas fa-sync-alt" style="color:#1d6f8f;"></i> <strong>Revision:</strong> 1–2 revisions included</p>
+                <p><i class="fas fa-clock" style="color:#1d6f8f;"></i> <strong>Urgent:</strong> +20%–50% extra charge</p>
+                <p><i class="fas fa-map-marker-alt" style="color:#1d6f8f;"></i> <strong>Travel:</strong> Outside Dhaka — additional</p>
+                <p><i class="fas fa-file-signature" style="color:#1d6f8f;"></i> Final quotation based on project scope</p>
+            </div>
+        </div>
+
+    </div> <!-- end grid -->
+
+    <!-- footer -->
+    <div class="footer-note">
+        <i class="fas fa-briefcase"></i> Professional • Reliable • Scalable • Client-Focused
+        <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+        <span style="font-weight: 500;">আমাদের মূল সার্ভিস: IT | Web | Software | Server | CCTV | Video | Podcast | Live | Graphic | SMM | Marketing | AI</span>
+    </div>
+
+</div>
+</body>
+</html>

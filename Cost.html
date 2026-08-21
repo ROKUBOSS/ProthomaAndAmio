@@ -1,0 +1,482 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prothoma Academy · বাজেট ড্যাশবোর্ড</title>
+  <!-- Font Awesome (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f6f9fc 0%, #e9f0f5 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1300px;
+      width: 100%;
+    }
+
+    /* header */
+    .brand-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(4px);
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      box-shadow: 0 10px 30px rgba(0, 20, 40, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .brand-header h1 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.9rem;
+      color: #0b2b3c;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-header h1 i {
+      color: #f09b4a;
+      font-size: 2.2rem;
+    }
+
+    .badge-total {
+      background: #1e3d4c;
+      color: white;
+      padding: 0.5rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-total i {
+      color: #f7c35c;
+    }
+
+    /* cards grid */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 800px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      .brand-header {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 32px;
+        text-align: center;
+        padding: 1.2rem 1.5rem;
+      }
+      .brand-header h1 {
+        justify-content: center;
+        font-size: 1.7rem;
+      }
+      .badge-total {
+        justify-content: center;
+      }
+    }
+
+    /* card style */
+    .card {
+      background: white;
+      border-radius: 40px;
+      padding: 1.8rem 1.8rem 2rem;
+      box-shadow: 0 20px 40px rgba(0, 20, 40, 0.08), 0 8px 20px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(2px);
+      height: fit-content;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 50px rgba(0, 30, 50, 0.12);
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1f3b4a;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 3px solid #eef5f9;
+      padding-bottom: 0.8rem;
+    }
+
+    .card-title i {
+      color: #f09b4a;
+      width: 2rem;
+      font-size: 1.6rem;
+    }
+
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0.2rem;
+      border-bottom: 1px dashed #e3ecf3;
+      font-size: 1rem;
+      color: #1e3543;
+    }
+
+    .list-item:last-child {
+      border-bottom: none;
+    }
+
+    .list-item .label {
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .list-item .label i {
+      color: #f09b4a;
+      width: 1.4rem;
+      font-size: 1rem;
+    }
+
+    .list-item .amount {
+      font-weight: 600;
+      color: #0a2c3d;
+      background: #f4f9fe;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+    }
+
+    .highlight-total {
+      background: #e6f2fa;
+      border-radius: 60px;
+      padding: 0.8rem 1.5rem;
+      margin-top: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #0d3346;
+      border: 1px solid #c6dbe9;
+    }
+
+    .highlight-total i {
+      color: #f09b4a;
+    }
+
+    .monthly-box {
+      background: #fafcff;
+      border-radius: 28px;
+      padding: 0.8rem 1.8rem;
+      margin: 1.2rem 0 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #dbe8f2;
+    }
+
+    .monthly-box span:first-child {
+      font-weight: 500;
+      color: #1f4357;
+    }
+
+    .monthly-box span:last-child {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #0d2f40;
+    }
+
+    .total-investment {
+      background: linear-gradient(135deg, #1b3d4e, #14313f);
+      border-radius: 40px;
+      padding: 1.5rem 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      margin: 1.5rem 0 0.5rem;
+      border: 1px solid #3d6a81;
+    }
+
+    .total-investment .label-big {
+      font-size: 1.3rem;
+      font-weight: 400;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .total-investment .value-big {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: #f5c54220;
+      padding: 0.2rem 1.8rem;
+      border-radius: 60px;
+      border: 1px solid #f5c54240;
+    }
+
+    .total-investment i {
+      color: #f7c35c;
+    }
+
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      color: #3b5e74;
+      font-size: 0.95rem;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(2px);
+      padding: 0.8rem 1.5rem;
+      border-radius: 60px;
+      border: 1px solid rgba(255,255,255,0.6);
+      display: inline-block;
+      width: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-note i {
+      margin: 0 6px;
+      color: #f09b4a;
+    }
+
+    /* dynamic color accent */
+    .accent-green {
+      color: #1b8a6b;
+    }
+    .accent-orange {
+      color: #d97d2b;
+    }
+
+    .small-stat {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      background: #edf5fb;
+      border-radius: 40px;
+      padding: 0.8rem 1.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      color: #1d3e51;
+    }
+
+    .stat-item i {
+      color: #f09b4a;
+    }
+
+    /* responsive tweaks */
+    @media (max-width: 500px) {
+      .card {
+        padding: 1.2rem;
+      }
+      .total-investment {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.2rem 1.5rem;
+      }
+      .total-investment .value-big {
+        font-size: 1.8rem;
+        padding: 0.2rem 1.2rem;
+      }
+      .badge-total {
+        font-size: 0.95rem;
+        padding: 0.4rem 1.2rem;
+      }
+      .brand-header h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- header -->
+  <div class="brand-header">
+    <h1><i class="fas fa-graduation-cap"></i> Prothoma Academy</h1>
+    <div class="badge-total">
+      <i class="fas fa-calendar-alt"></i> প্রথম ৬ মাস · মোট বিনিয়োগ
+      <span style="background: #f7c35c20; padding: 0.1rem 1rem; border-radius: 40px; margin-left: 6px;">৳৩৬,২০,০০০</span>
+    </div>
+  </div>
+
+  <!-- grid: setup + running -->
+  <div class="grid-2col">
+
+    <!-- setup card (updated with photocopy machine) -->
+    <div class="card">
+      <div class="card-title">
+        <i class="fas fa-toolbox"></i> এককালীন Setup Cost
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-building"></i> Office Advance</span>
+        <span class="amount">৳৩,০০,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-couch"></i> Furniture & Bench</span>
+        <span class="amount">৳২,০০,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-chalkboard"></i> Smart Board (৩টি)</span>
+        <span class="amount">৳৪,৫০,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-snowflake"></i> AC (৩টি)</span>
+        <span class="amount">৳১,৫০,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-lightbulb"></i> Fan, Light & Curtain</span>
+        <span class="amount">৳৭০,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-laptop"></i> Computer + Printer</span>
+        <span class="amount">৳১,২০,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-video"></i> CCTV + Sound System</span>
+        <span class="amount">৳৮০,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-sign"></i> Signboard & Branding</span>
+        <span class="amount">৳৮০,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-globe"></i> License, Domain, Website</span>
+        <span class="amount">৳৫০,০০০</span>
+      </div>
+      <!-- NEW: Photocopy Machine -->
+      <div class="list-item" style="background: #f0f7fe; border-radius: 30px; padding: 0.6rem 0.8rem; margin: 0.2rem 0; border: 1px solid #d3e4f0;">
+        <span class="label"><i class="fas fa-copy" style="color: #2b7a9c;"></i> Photocopy Machine</span>
+        <span class="amount" style="background: #dbeaf5; font-weight: 700;">৳১,৭০,০০০</span>
+      </div>
+      <div class="highlight-total">
+        <span><i class="fas fa-calculator"></i> মোট Setup</span>
+        <span>৳১৬,৭০,০০০</span>
+      </div>
+      <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #2f5b72; background: #e3eff8; padding: 0.3rem 1.2rem; border-radius: 60px; display: inline-block;">
+        <i class="fas fa-check-circle" style="color: #1f8b6a;"></i> 
+      </div>
+    </div>
+
+    <!-- running + 6 months card -->
+    <div class="card">
+      <div class="card-title">
+        <i class="fas fa-calendar-check"></i> মাসিক Running Cost
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-home"></i> Office Rent</span>
+        <span class="amount">৳১,২০,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-users"></i> Staff Salary</span>
+        <span class="amount">৳৯৫,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-bullhorn"></i> Marketing</span>
+        <span class="amount">৳৫০,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-bolt"></i> Utility Bill</span>
+        <span class="amount">৳২৫,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-wifi"></i> Internet</span>
+        <span class="amount">৳৫,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-pencil-alt"></i> Stationery & Cleaning</span>
+        <span class="amount">৳১০,০০০</span>
+      </div>
+      <div class="list-item">
+        <span class="label"><i class="fas fa-ellipsis-h"></i> Miscellaneous</span>
+        <span class="amount">৳১৫,০০০</span>
+      </div>
+      <div class="monthly-box">
+        <span><i class="fas fa-calendar-alt" style="color: #f09b4a;"></i> মোট / মাস</span>
+        <span>৳৩,২৫,০০০</span>
+      </div>
+
+      <!-- 6 month running -->
+      <div style="background: #dcecf7; border-radius: 40px; padding: 0.8rem 1.5rem; margin: 1rem 0 0.2rem; display: flex; justify-content: space-between; align-items: center;">
+        <span><i class="fas fa-clock" style="color: #1d6f8f;"></i> ৬ মাসের Running Cost</span>
+        <span style="font-weight: 700; font-size: 1.2rem; color: #0c3448;">৳১৯,৫০,০০০</span>
+      </div>
+      <div style="font-size: 0.9rem; color: #2e5f77; padding: 0.2rem 0 0 0.5rem;">
+        <i class="fas fa-arrow-right"></i> ৳৩,২৫,০০০ × ৬ মাস
+      </div>
+
+      <!-- total investment (updated: setup + 6 months run) -->
+      <div class="total-investment">
+        <span class="label-big"><i class="fas fa-flag-checkered"></i> সর্বমোট বিনিয়োগ</span>
+        <span class="value-big">৳৩৬,২০,০০০</span>
+      </div>
+      <div class="small-stat">
+        <span class="stat-item"><i class="fas fa-circle" style="color: #f09b4a;"></i> Setup + ৬ মাস</span>
+        <span class="stat-item"><i class="fas fa-clock"></i> প্রথম ৬ মাস</span>
+    
+      </div>
+    </div>
+  </div>
+
+  <!-- extra detail row: dynamic reminder with updated amounts -->
+  <div style="display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: center; margin-top: 0.8rem;">
+    <div style="background: #ffffffd0; backdrop-filter: blur(4px); border-radius: 60px; padding: 0.5rem 2rem; border: 1px solid #cfdfea;">
+      <i class="fas fa-tag" style="color: #d97d2b;"></i> Setup: ৳১৬,৭০,০০০
+    </div>
+    <div style="background: #ffffffd0; backdrop-filter: blur(4px); border-radius: 60px; padding: 0.5rem 2rem; border: 1px solid #cfdfea;">
+      <i class="fas fa-calendar-week" style="color: #d97d2b;"></i> ৬ মাস চলমান: ৳১৯,৫০,০০০
+    </div>
+    <div style="background: #1b3d4e; color: white; border-radius: 60px; padding: 0.5rem 2.2rem; border: 1px solid #3e718a;">
+      <i class="fas fa-coins" style="color: #f7c35c;"></i> মোট বাজেট: ৳৩৬,২০,০০০
+    </div>
+  </div>
+
+  <!-- footnote -->
+  <div class="footer-note">
+    <i class="fas fa-school"></i> Prothoma Academy · Offline Educational Startup · প্রথম ৬ মাসের জন্য আনুমানিক বাজেট
+    <i class="fas fa-chart-line" style="margin-left: 10px;"></i>
+  </div>
+
+</div>
+</body>
+</html>
