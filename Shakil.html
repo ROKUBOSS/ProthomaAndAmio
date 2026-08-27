@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>দৈনিক কার্যক্রম</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans Bengali", Arial, sans-serif;
+            min-height: 100vh;
+            padding: 30px 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #5a3f9e;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .progress-box {
+            background: #eee;
+            height: 14px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00c853, #64dd17);
+            border-radius: 20px;
+            transition: 0.4s ease;
+        }
+
+        .counter {
+            text-align: center;
+            color: #555;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 15px;
+            background: #f8f9ff;
+            border-left: 5px solid #667eea;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .task:hover {
+            transform: translateX(5px);
+            background: #eef0ff;
+        }
+
+        .task.completed {
+            background: #e8f5e9;
+            border-left-color: #00c853;
+        }
+
+        .task.completed label {
+            text-decoration: line-through;
+            color: #777;
+        }
+
+        input[type="checkbox"] {
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            min-width: 25px;
+            border: 2px solid #667eea;
+            border-radius: 7px;
+            cursor: pointer;
+            position: relative;
+            transition: 0.2s;
+        }
+
+        input[type="checkbox"]:checked {
+            background: #00c853;
+            border-color: #00c853;
+        }
+
+        input[type="checkbox"]:checked::after {
+            content: "✓";
+            position: absolute;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            left: 4px;
+            top: -1px;
+        }
+
+        label {
+            flex: 1;
+            font-size: 17px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .reset-btn {
+            display: block;
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff5252, #ff1744);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .reset-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .success {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: #c8e6c9;
+            color: #1b5e20;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .container {
+                padding: 20px 15px;
+                border-radius: 18px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            label {
+                font-size: 15px;
+            }
+
+            .task {
+                padding: 14px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📋 দৈনিক কার্যক্রম</h1>
+    <p class="subtitle">আজকের সব কাজ সম্পন্ন করুন</p>
+
+    <div class="progress-box">
+        <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="counter" id="counter">
+        ০ / ৮ টি কাজ সম্পন্ন
+    </div>
+
+    <div class="task">
+        <input type="checkbox" id="task1">
+        <label for="task1">সব ডিভাইস চেক করতে হবে</label>
+    </div>
+
+    <div class="task">
+        <input type="checkbox" id="task2">
+        <label for="task2">ফিল্টারে পানি ভরতে হবে</label>
+    </div>
+
+    <div class="task">
+        <input type="checkbox" id="task3">
+        <label for="task3">সব বাথরুম পরিষ্কার ও পরীক্ষা করতে হবে</label>
+    </div>
+
+    <div class="task">
+        <input type="checkbox" id="task4">
+        <label for="task4">সব বৈদ্যুতিক সুইচ বন্ধ করতে হবে</label>
+    </div>
+
+    <div class="task">
+        <input type="checkbox" id="task5">
+        <label for="task5">স্মার্টবোর্ডের সুইচ বন্ধ করতে হবে</label>
+    </div>
+
+    <div class="task">
+        <input type="checkbox" id="task6">
+        <label for="task6">অতিথিদের নাস্তা দিতে হবে</label>
+    </div>
+
+    <div class="task">
+        <input type="checkbox" id="task7">
+        <label for="task7">সহকারী ক্যামেরাম্যান হিসেবে কাজ করতে হবে</label>
+    </div>
+
+    <div class="task">
+        <input type="checkbox" id="task8">
+        <label for="task8">বাইরে থেকে বাজার করতে হবে</label>
+    </div>
+
+    <button class="reset-btn" onclick="resetTasks()">
+        🔄 সব কাজ রিসেট করুন
+    </button>
+
+    <div class="success" id="success">
+        🎉 অসাধারণ! আজকের সব কাজ সম্পন্ন হয়েছে।
+    </div>
+
+</div>
+
+<script>
+    const checkboxes = document.querySelectorAll(
+        'input[type="checkbox"]'
+    );
+
+    const tasks = document.querySelectorAll(".task");
+    const progress = document.getElementById("progress");
+    const counter = document.getElementById("counter");
+    const success = document.getElementById("success");
+
+    const bengaliNumbers = [
+        "০", "১", "২", "৩", "৪",
+        "৫", "৬", "৭", "৮", "৯"
+    ];
+
+    function toBengaliNumber(number) {
+        return number
+            .toString()
+            .split("")
+            .map(num => bengaliNumbers[num])
+            .join("");
+    }
+
+    function updateProgress() {
+        let completed = 0;
+
+        checkboxes.forEach((checkbox, index) => {
+            if (checkbox.checked) {
+                completed++;
+                tasks[index].classList.add("completed");
+            } else {
+                tasks[index].classList.remove("completed");
+            }
+        });
+
+        const total = checkboxes.length;
+        const percentage = (completed / total) * 100;
+
+        progress.style.width = percentage + "%";
+
+        counter.textContent =
+            `${toBengaliNumber(completed)} / ${toBengaliNumber(total)} টি কাজ সম্পন্ন`;
+
+        if (completed === total) {
+            success.style.display = "block";
+        } else {
+            success.style.display = "none";
+        }
+
+        // ব্রাউজারে কাজের অবস্থা সংরক্ষণ
+        localStorage.setItem(
+            "dailyTasks",
+            JSON.stringify(
+                Array.from(checkboxes).map(cb => cb.checked)
+            )
+        );
+    }
+
+    function resetTasks() {
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        });
+
+        updateProgress();
+    }
+
+    // আগের সংরক্ষিত অবস্থা লোড করা
+    window.addEventListener("load", () => {
+        const savedTasks = JSON.parse(
+            localStorage.getItem("dailyTasks")
+        );
+
+        if (savedTasks) {
+            checkboxes.forEach((checkbox, index) => {
+                checkbox.checked = savedTasks[index] || false;
+            });
+        }
+
+        updateProgress();
+    });
+
+    // Checkbox পরিবর্তন হলে আপডেট
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", updateProgress);
+    });
+</script>
+
+</body>
+</html>
