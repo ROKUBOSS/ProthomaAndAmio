@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Online Platform Plan</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #eef2ff, #fdf2f8);
+    color: #1f2937;
+    padding: 25px 15px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+    background: linear-gradient(135deg, #4f46e5, #9333ea, #ec4899);
+    color: white;
+    padding: 30px 25px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 22px;
+    box-shadow: 0 10px 25px rgba(79,70,229,.20);
+}
+
+.header h1 {
+    font-size: 32px;
+    margin-bottom: 7px;
+}
+
+.header p {
+    font-size: 15px;
+    opacity: .9;
+}
+
+/* ================= SECTION ================= */
+
+.section {
+    background: rgba(255,255,255,.97);
+    border-radius: 17px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.07);
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+
+.section-title h2 {
+    font-size: 20px;
+    color: #4f46e5;
+}
+
+.section-total {
+    font-weight: bold;
+    color: #16a34a;
+    white-space: nowrap;
+}
+
+/* ================= ITEMS ================= */
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fafafa;
+    min-height: 52px;
+}
+
+.label {
+    flex: 1;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* ================= CHECKBOX ================= */
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: #4f46e5;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* ================= AMOUNT ================= */
+
+.amount {
+    width: 125px;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    font-size: 13px;
+    text-align: right;
+    background: white;
+}
+
+.amount:focus {
+    border-color: #6366f1;
+}
+
+/* ================= SUMMARY ================= */
+
+.summary {
+    background: linear-gradient(135deg, #111827, #312e81);
+    color: white;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 8px 25px rgba(17,24,39,.20);
+}
+
+.summary h2 {
+    margin-bottom: 15px;
+    font-size: 21px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    font-size: 14px;
+}
+
+.grand-total {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid rgba(255,255,255,.3);
+    display: flex;
+    justify-content: space-between;
+    font-size: 23px;
+    font-weight: bold;
+    color: #facc15;
+}
+
+.note {
+    margin-top: 10px;
+    font-size: 12px;
+    opacity: .7;
+    text-align: center;
+}
+
+
+/* =========================================================
+   PRINT SETTINGS — A4 / TWO PAGE
+   ========================================================= */
+
+@media print {
+
+    @page {
+        size: A4 portrait;
+        margin: 9mm 10mm;
+    }
+
+    html,
+    body {
+        width: 210mm;
+        min-height: 297mm;
+        background: white !important;
+        padding: 0;
+        margin: 0;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .container {
+        width: 190mm;
+        max-width: 190mm;
+        margin: 0 auto;
+    }
+
+    /* Keep the printed document clean and compact enough for exactly two A4 pages. */
+    .section,
+    .summary {
+        width: 100%;
+    }
+
+    /* Header */
+
+    .header {
+        padding: 15px 20px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        box-shadow: none;
+    }
+
+    .header h1 {
+        font-size: 24px;
+        margin-bottom: 4px;
+    }
+
+    .header p {
+        font-size: 11px;
+    }
+
+    /* Sections */
+
+    .section {
+        padding: 9px 11px;
+        margin-bottom: 8px;
+        border-radius: 9px;
+        box-shadow: none;
+        border: 1px solid #e5e7eb;
+
+        /* Prevent section splitting */
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .section-title {
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+    }
+
+    .section-title h2 {
+        font-size: 15px;
+    }
+
+    .section-total {
+        font-size: 12px;
+    }
+
+    /* Items — one below another when printing */
+    .items {
+        grid-template-columns: 1fr !important;
+        gap: 5px;
+    }
+
+    .item {
+        padding: 6px 7px;
+        min-height: 34px;
+        gap: 7px;
+        border-radius: 6px;
+
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .label {
+        font-size: 10.5px;
+    }
+
+    .checkbox {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* Amount */
+
+    .amount {
+        width: 85px;
+        padding: 5px 6px;
+        font-size: 10px;
+        height: 25px;
+    }
+
+    /* Summary */
+
+    .summary {
+        padding: 13px;
+        border-radius: 9px;
+        box-shadow: none;
+
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .summary h2 {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .summary-row {
+        padding: 5px 0;
+        font-size: 10.5px;
+    }
+
+    .grand-total {
+        margin-top: 8px;
+        padding-top: 8px;
+        font-size: 17px;
+    }
+
+    .note {
+        margin-top: 6px;
+        font-size: 9px;
+    }
+
+    /*
+       Force page break before Experts section.
+       This makes the print layout predictable.
+    */
+
+    .experts-section {
+        page-break-before: always;
+        break-before: page;
+    }
+
+    /*
+       Hide empty input placeholder when printing.
+    */
+
+    .amount::placeholder {
+        color: transparent;
+    }
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 12px 8px;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .items {
+        grid-template-columns: 1fr;
+    }
+
+    .item {
+        flex-wrap: wrap;
+    }
+
+    .amount {
+        width: 100%;
+    }
+
+    .section-title {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .grand-total {
+        font-size: 20px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>🚀 Online Platform Plan</h1>
+
+        <p>
+            Investment • Operations • Experts • Marketing
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         1. RENT / UTILITY / SALARY
+         ===================================================== -->
+
+    <div class="section">
+
+        <div class="section-title">
+
+            <h2>🏢 Rent, Utility Bill & Salary</h2>
+
+            <span class="section-total">
+                ৳ <span id="total1">0</span>
+            </span>
+
+        </div>
+
+
+        <div class="items">
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Room / Office Rent
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="1"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Utility Bill
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="1"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    WiFi / Internet
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="1"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Server / Hosting
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="1"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Teachers' Salary
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="1"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         2. STUDIO DEVICES
+         ===================================================== -->
+
+    <div class="section">
+
+        <div class="section-title">
+
+            <h2>🎥 Studio Devices & Setup</h2>
+
+            <span class="section-total">
+                ৳ <span id="total2">355,000</span>
+            </span>
+
+        </div>
+
+
+        <div class="items">
+
+
+            <div class="item">
+
+                <input
+                    type="checkbox"
+                    class="checkbox"
+                    checked
+                >
+
+                <span class="label">
+                    Smart Board (75 inches)
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    value="200000"
+                    data-section="2"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input
+                    type="checkbox"
+                    class="checkbox"
+                    checked
+                >
+
+                <span class="label">
+                    Microphone
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    value="10000"
+                    data-section="2"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input
+                    type="checkbox"
+                    class="checkbox"
+                    checked
+                >
+
+                <span class="label">
+                    Tripod (Best Quality)
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    value="15000"
+                    data-section="2"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input
+                    type="checkbox"
+                    class="checkbox"
+                    checked
+                >
+
+                <span class="label">
+                    Lights
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    value="30000"
+                    data-section="2"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input
+                    type="checkbox"
+                    class="checkbox"
+                    checked
+                >
+
+                <span class="label">
+                    Acoustic Panel
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    value="100000"
+                    data-section="2"
+                >
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         3. EXPERTS
+         PAGE 2 START
+         ===================================================== -->
+
+    <div class="section experts-section">
+
+        <div class="section-title">
+
+            <h2>👨‍💻 Experts' Salary</h2>
+
+            <span class="section-total">
+                ৳ <span id="total3">0</span>
+            </span>
+
+        </div>
+
+
+        <div class="items">
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Photo & Videographer
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="3"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Video Editor
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="3"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Graphic Designer
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="3"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    UI/UX Designer
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="3"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Digital Marketer
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="3"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Website Developer
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="3"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    App Developer
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="3"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    DevOps Engineer
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="3"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Presenter / Host
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="3"
+                >
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         4. MARKETING
+         ===================================================== -->
+
+    <div class="section">
+
+        <div class="section-title">
+
+            <h2>📢 Marketing</h2>
+
+            <span class="section-total">
+                ৳ <span id="total4">0</span>
+            </span>
+
+        </div>
+
+
+        <div class="items">
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Meta Ads (Facebook & Instagram)
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="4"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Alphabet Ads (Google / YouTube)
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="4"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Content Marketing
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="4"
+                >
+
+            </div>
+
+
+            <div class="item">
+
+                <input type="checkbox" class="checkbox">
+
+                <span class="label">
+                    Influencer / Creator Marketing
+                </span>
+
+                <input
+                    type="number"
+                    class="amount"
+                    placeholder="Amount"
+                    data-section="4"
+                >
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SUMMARY
+         ===================================================== -->
+
+    <div class="summary">
+
+        <h2>💰 Budget Summary</h2>
+
+
+        <div class="summary-row">
+
+            <span>
+                Rent, Utility & Teachers
+            </span>
+
+            <span>
+                ৳ <span id="sum1">0</span>
+            </span>
+
+        </div>
+
+
+        <div class="summary-row">
+
+            <span>
+                Studio Devices & Setup
+            </span>
+
+            <span>
+                ৳ <span id="sum2">355,000</span>
+            </span>
+
+        </div>
+
+
+        <div class="summary-row">
+
+            <span>
+                Experts' Salary
+            </span>
+
+            <span>
+                ৳ <span id="sum3">0</span>
+            </span>
+
+        </div>
+
+
+        <div class="summary-row">
+
+            <span>
+                Marketing
+            </span>
+
+            <span>
+                ৳ <span id="sum4">0</span>
+            </span>
+
+        </div>
+
+
+        <div class="grand-total">
+
+            <span>
+                Grand Total
+            </span>
+
+            <span>
+                ৳ <span id="grandTotal">355,000</span>
+            </span>
+
+        </div>
+
+
+        <div class="note">
+            Online Platform Plan • Dynamic Budget Calculator
+        </div>
+
+    </div>
+
+</div> <br>
+
+<div style="text-align: center;">
+    <button style="padding: 10px 20px; background: #4f46e5; border: none; border-radius: 8px; cursor: pointer;">
+        <a href="Budget.pdf" target="_blank" style="color: white; text-decoration: none; font-weight: bold;">
+            Budget PDF
+        </a>
+    </button>
+</div>
+
+
+<script>
+
+/* ================= NUMBER FORMAT ================= */
+
+function formatNumber(number) {
+
+    return new Intl.NumberFormat('en-IN')
+        .format(number);
+
+}
+
+
+/* ================= CALCULATE ================= */
+
+function calculateTotals() {
+
+    let totals = {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0
+    };
+
+
+    document.querySelectorAll('.item')
+        .forEach(item => {
+
+            const checkbox =
+                item.querySelector('.checkbox');
+
+            const amount =
+                item.querySelector('.amount');
+
+
+            if (checkbox.checked) {
+
+                const value =
+                    parseFloat(amount.value) || 0;
+
+                const section =
+                    amount.dataset.section;
+
+                totals[section] += value;
+
+            }
+
+        });
+
+
+    let grandTotal = 0;
+
+
+    for (let i = 1; i <= 4; i++) {
+
+        document.getElementById('total' + i)
+            .textContent =
+            formatNumber(totals[i]);
+
+
+        document.getElementById('sum' + i)
+            .textContent =
+            formatNumber(totals[i]);
+
+
+        grandTotal += totals[i];
+
+    }
+
+
+    document.getElementById('grandTotal')
+        .textContent =
+        formatNumber(grandTotal);
+
+}
+
+
+/* ================= EVENT LISTENERS ================= */
+
+document.querySelectorAll(
+    '.amount, .checkbox'
+).forEach(element => {
+
+    element.addEventListener(
+        'input',
+        calculateTotals
+    );
+
+    element.addEventListener(
+        'change',
+        calculateTotals
+    );
+
+});
+
+
+/* INITIAL CALCULATION */
+
+calculateTotals();
+
+</script>
+
+</body>
+</html>
